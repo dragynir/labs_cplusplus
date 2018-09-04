@@ -1,0 +1,8 @@
+start:source.o
+	g++ -o start source.o 
+
+source.o:source.cpp
+	g++ -c source.cpp
+
+clean:
+	rm -rf *.o

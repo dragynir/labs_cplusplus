@@ -1,0 +1,14 @@
+start:source.o module1.o module2.o
+	g++ -o start source.o module1.o module2.o
+
+
+source.o:source.cpp
+	g++ -c source.cpp
+
+module1.o:module1.cpp module1.h
+	g++ -c module1.cpp
+
+module2.o:module2.cpp module2.h
+	g++ -c module2.cpp
+clean:
+	rm -rf *.o

@@ -1,13 +1,9 @@
-#include<iostream>
 #include<fstream>
 #include<cassert>
 #include<regex>
 #include<exception>
-
-
-namespace InputHandle{
-	void check_file_format();
-}
+#include"handler.h"
+#include<iostream>
 
 
 namespace InputHandle{
@@ -30,12 +26,19 @@ namespace InputHandle{
 	}
 }
 
+namespace Creator {
+	void fill_file(std::ofstream& output_file, std::map<std::string, int>& words_data, std::map<std::string, bool>& words_need_quotes);
+}
+
+namespace InputHandle {
+	void check_file_format();
+}
+
 int main(int argc , char** argv){
 	assert(argc == 3);
 
 	std::string input_f = argv[1];
 	std::string csv_f = argv[2];
-	
 
 	InputHandle::check_file_format(input_f , csv_f);
 
@@ -47,13 +50,15 @@ int main(int argc , char** argv){
 		exit(1);
 	}
 
+	
 
+	std::map<std::string , int> words_data;
+	std::map<std::string, bool> words_need_quotes;
+	Handler::set_words(input_file , words_data , words_need_quotes);
 
+	Creator::fill_file(output_file, words_data, words_need_quotes);
 
-
-
-
-
-
+	system("pause");
+	
 	return 0;
 }

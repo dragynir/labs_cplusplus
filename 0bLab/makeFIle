@@ -1,8 +1,13 @@
-start:source.o
-	g++ -o start source.o 
+start:source.o handler.o creator.o
+	g++ -o start source.o handler.o creator.o
 
 source.o:source.cpp
 	g++ -c source.cpp
+
+creator.o: creator.cpp
+	g++ -c creator.cpp
+handler.o:handler.cpp
+	g++ -c handler.cpp
 
 clean:
 	rm -rf *.o

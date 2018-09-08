@@ -1,0 +1,14 @@
+start:source.o trit.o tritset.o
+	g++ start -o source.o trit.o tritset.o
+
+source:source.cpp
+	g++ -c source.cpp
+
+trit.o:trit.cpp
+	g++ -c trit.cpp
+
+tritset.o:tritset.cpp
+	g++ -c tritset.cpp
+
+clean:
+	rm -rf *.o

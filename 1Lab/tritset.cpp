@@ -52,17 +52,54 @@ Trit TritSet::operator[](size_t trit_index) {
 
 
 
-/*TritSet& TritSet::operator&(TritSet const & obj) {
-	size_t res_trits_size = trits_capacity > obj.trits_capacity ? trits_capacity : obj.trits_capacity;
-	size_t res_data_length = data_length > obj.data_length ? data_length : obj.data_length;
-	size_t diff = (res_trits_size* 2) % (8 * UN_INT_SIZE);
-	
-	unsigned int* res_data = new unsigned int[res_data_length];
+
+Trit TritSet::execute_operation(Trit const & a , Trit const & b , OperationType type) {
+
+	if (type == And) {
+		return (a & b);
+	}
+	else if (type == Or) {
+		return (a | b);
+	}
+}
 
 
+TritSet& TritSet::init_operation(TritSet & obj, OperationType type) {
+	TritSet* greater = nullptr;
+	size_t res_trits_size;
+	size_t less_size;
+	if (trits_capacity > obj.trits_capacity) {
+		res_trits_size = trits_capacity;
+		less_size = obj.trits_capacity;
+		greater = this;
+	}
+	else {
+		res_trits_size = obj.trits_capacity;
+		less_size = trits_capacity;
+		greater = &obj;
+	}
+
+	TritSet* new_set = new TritSet(res_trits_size);
+
+	for (int i = 0; i < res_trits_size; ++i) {
+		if (i < less_size) {
+			(*new_set)[i] = (execute_operation((*this)[i] ,   obj[i] , type));
+		}
+		else {
+			(*new_set)[i] = (*greater)[i];
+		}
+	}
+	return *new_set;
+}
 
 
-}*/
+TritSet& TritSet::operator&(TritSet & obj) {
+	return init_operation(obj, And);
+}
+
+TritSet& TritSet::operator|(TritSet & obj) {
+	return init_operation(obj, Or);
+}
 
 
 TritSet::TritSet(TritSet const& obj)

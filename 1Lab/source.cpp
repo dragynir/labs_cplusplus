@@ -2,48 +2,27 @@
 
 
 
-std::ostream& operator<<(std::ostream& stream, Trit const & trit) {
-	unsigned char pointer = 1;
-	pointer <<= (sizeof(unsigned char) * 8 - trit.get_pos());
-	if (pointer & trit.get_data()) {
-		stream << "True";
-	}
-	else {
-		pointer <<= (1);
-		if (pointer & trit.get_data()) {
-			stream << "False";
-		}
-		else {
-			stream << "Unknown";
-		}
-	}
-	return stream;
-}
-
 
 
 int main() {
-
-	TritSet set(2);
-	//set.resize(10);
-	for (int i = 0; i < 2; ++i) {
-		/*Trit cat = */(set[i] = True);
+	TritSet set1(10);
+	TritSet set2(10);
+	set1.resize(2);
+	for (int i = 0; i < set1.capacity(); ++i) {
+		set1[i] = True;
+	}
+	for (int i = 0; i < set2.capacity(); ++i) {
+		set2[i] = False;
 	}
 
-	//set[3] = Unknown;
-	set[0] = False;
-	for (int i = 0; i < 2; ++i) {
-		std::cout << set[i] << '\n';
-	}
+	TritSet set3 = (set1 | set2);
 
-	Trit a = False;
-	Trit b = a;
-	std::cout << a << '\n' << b << '\n';
-	set[1] = a;
-	for (int i = 0; i < 2; ++i) {
-		std::cout << set[i] << '\n';
+	for (int i = 0; i < set3.capacity(); ++i) {
+		std::cout << set3[i] << "\n";
 	}
-
+	Trit a;
+	a = True;
+	std::cout << a;
 	system("pause");
 	return 0;
 }

@@ -14,6 +14,7 @@ class TritSet
 {
 
 private:
+	enum OperationType { And, Or };
 	unsigned int* data_array;
 	size_t trits_capacity;//all
 	mutable size_t used_capacity;//settled
@@ -22,7 +23,8 @@ private:
 	void set_used_capacity()const;
 	void fill_unknown(size_t start, size_t end);
 	void resize_data(size_t end, size_t tr_length);
-
+	Trit execute_operation(Trit const & a, Trit const & b , OperationType type);
+	TritSet& init_operation(TritSet & obj, OperationType type);
 public:
 	TritSet();
 
@@ -45,7 +47,9 @@ public:
 
 	void resize(size_t new_size);/////
 
-	//TritSet& operator&(TritSet const & obj);
+	TritSet& operator&(TritSet  & obj);
+
+	TritSet& operator|(TritSet & obj);
 
 	~TritSet();
 };

@@ -17,14 +17,17 @@ private:
 	enum OperationType { And, Or };
 	unsigned int* data_array;
 	size_t trits_capacity;//all
-	mutable size_t used_capacity;//settled
 	size_t data_length;//all
+
+	mutable size_t used_capacity;//settled
 	mutable size_t used_length;//settled
+
 	void set_used_capacity()const;
 	void fill_unknown(size_t start, size_t end);
 	void resize_data(size_t end, size_t tr_length);
 	Trit execute_operation(Trit const & a, Trit const & b , OperationType type);
 	TritSet& init_operation(TritSet & obj, OperationType type);
+
 public:
 	TritSet();
 

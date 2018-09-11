@@ -81,7 +81,7 @@ TritSet& TritSet::init_operation(TritSet & obj, OperationType type) {
 
 	TritSet* new_set = new TritSet(res_trits_size);
 
-	for (int i = 0; i < res_trits_size; ++i) {
+	for (size_t i = 0; i < res_trits_size; ++i) {
 		if (i < less_size) {
 			(*new_set)[i] = (execute_operation((*this)[i] ,   obj[i] , type));
 		}

@@ -12,7 +12,6 @@ namespace Tables {
 	const TritType NegTable[3] = { True , Unknown , False };
 }
 
-//поместить & | обратно в класс
 
 class Trit
 {
@@ -21,14 +20,15 @@ private:
 	size_t right_bit;
 	bool another;
 
+	int get_data()const;//for output
+	int get_pos()const;//for output
+	void init_trit();
+	void set_bit(unsigned char pointer, Trit const & obj, size_t diff);
+	void set_new_value(TritType type, unsigned char pointer);
 public:
 	TritType get_type() const;
+
 	Trit();
-	int get_data()const;//for output
-
-	int get_pos()const;//for output
-
-	void set_bit(unsigned char pointer, Trit const & obj , size_t diff);
 
 	Trit(TritType obj);
 
@@ -51,10 +51,6 @@ public:
 	Trit const & operator!();
 
 	void set_trit(unsigned int* data, size_t diff , bool another);
-
-	void init_trit();
-
-	void set_new_value(TritType type , unsigned char pointer);
 
 	void set_true(unsigned char pointer);
 

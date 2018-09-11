@@ -58,7 +58,7 @@ int main(int argc , char** argv){
 
 	Creator::fill_file(output_file, words_data, words_need_quotes);
 
-	system("pause");
+	
 	
 	return 0;
 }

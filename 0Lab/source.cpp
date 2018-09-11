@@ -30,5 +30,5 @@ int main(int argc, char** argv)
 //  2.использовать using объявление using Module2::getMyName
 //	3.написать префикс перед getMyName - Module2::getMyName()
 //	явно указав принадлежность к Module2
-//6) можно написать using namespace std; - using ирективу
+//6) можно написать using namespace std; - using директиву
 //	но лучше using std::cout;

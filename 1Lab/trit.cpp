@@ -50,6 +50,7 @@ int Trit::get_pos()const {
 }
 void Trit::set_trit(unsigned int* d, size_t diff , bool another) {
 	size_t b_pos = (diff - 1) / 8;
+
 	right_bit = diff - b_pos * 8;
 	data = ((unsigned char*)d) + b_pos;
 	this->another = another;
@@ -207,7 +208,11 @@ Trit* res_obj = new Trit();
 return *res_obj;
 }
 
-
+bool operator==(Trit const & self, Trit const & obj) {
+	TritType a = self.get_type();
+	TritType b = obj.get_type();
+	return a == b ? true : false;
+}
 
 const Trit& operator|(Trit const & self, Trit const & obj) {
 TritType l_type = self.get_type();

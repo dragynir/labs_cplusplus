@@ -42,7 +42,7 @@ Trit TritSet::operator[](size_t trit_index) {
 	size_t diff = (trit_index * 2) % (8 * UN_INT_SIZE);
 	Trit wrapper;
 	if (diff == 0) {
-		wrapper.set_trit(data_array + full_index - 1, diff , true);
+		wrapper.set_trit(data_array + full_index - 1, UN_INT_SIZE * 8 , true);
 	}
 	else {
 		wrapper.set_trit(data_array + full_index , diff , true);
@@ -125,11 +125,22 @@ void TritSet::shrink_to_fit() {
 	resize_data(used_length , used_capacity);
 }
 
+size_t TritSet::cardinality(Trit value) {
+	size_t value_count = 0;
+
+	for (size_t i = 0; i < trits_capacity; ++i) {
+		if ((*this)[i] == value) {
+			value_count++;
+		}
+	}
+	return value_count;
+}
+
 
 void TritSet::resize_data(size_t end , size_t tr_length) {
 	unsigned int* new_data = new unsigned int[end];
 	for (size_t i = 0; i < end; ++i) {
-		if (i > data_length) {
+		if (i < data_length) {
 			new_data[i] = data_array[i];
 		}
 		else {

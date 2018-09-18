@@ -2,52 +2,20 @@
 
 
 namespace Handler{
-	void set_words(std::ifstream& input_file , std::map<std::string , int>& words_data , std::map<std::string , bool>& words_need_quotes){
+	void set_words(std::ifstream& input_file , std::map<std::string , int>& words_data){
 		std::string input_str;
 
-		std::list<std::string> input_lines;
+		std::regex rgx("[^a-zA-Z0-9]+");
 
-		while(std::getline(input_file , input_str)){
-			input_lines	.push_back(input_str);
-		}
-		for(auto line : input_lines){
-			input_str = line;
-			bool in_word = false;
-			std::string word = "";
-			bool need_quotes = false;
-
-			for(char s : input_str){
-				if(s == ' '){
-					if(in_word){
-						words_data[word]++;
-						words_need_quotes[word] = need_quotes;
-						word = "";
-						in_word = false;
-						need_quotes = false;
-					}else{
-						continue;
-					}
-						
-				}else{
-					if(!in_word){
-						in_word = true;
-					}
-				}
-				if(s != ' '){
-					word+=s;
-				}
-				
-				if(in_word && !(isdigit(s) || isalpha(s))){
-					need_quotes = true;
-				}
+		while (std::getline(input_file, input_str)) {
+			std::sregex_token_iterator iter(input_str.begin() , input_str.end() , rgx , -1);
+			std::sregex_token_iterator end;
+			
+			for (; iter != end; ++iter) {
+				std::string a = *iter;
+				if(a != "")
+					words_data[a]++;
 			}
-
-			if(word != ""){
-				words_data[word]++;
-				words_need_quotes[word] = need_quotes;
-			}
-
 		}
-
 	}
 }

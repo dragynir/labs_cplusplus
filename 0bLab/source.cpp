@@ -1,6 +1,5 @@
 #include<fstream>
 #include<cassert>
-#include<regex>
 #include<exception>
 #include"handler.h"
 #include<iostream>
@@ -27,11 +26,7 @@ namespace InputHandle{
 }
 
 namespace Creator {
-	void fill_file(std::ofstream& output_file, std::map<std::string, int>& words_data, std::map<std::string, bool>& words_need_quotes);
-}
-
-namespace InputHandle {
-	void check_file_format();
+	void fill_file(std::ofstream& output_file, std::map<std::string, int>& words_data);
 }
 
 int main(int argc , char** argv){
@@ -53,12 +48,10 @@ int main(int argc , char** argv){
 	
 
 	std::map<std::string , int> words_data;
-	std::map<std::string, bool> words_need_quotes;
-	Handler::set_words(input_file , words_data , words_need_quotes);
 
-	Creator::fill_file(output_file, words_data, words_need_quotes);
+	Handler::set_words(input_file , words_data);
 
-	
-	
+	Creator::fill_file(output_file, words_data);
+
 	return 0;
 }

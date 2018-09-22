@@ -1,5 +1,5 @@
 start:source.o trit.o tritset.o
-	g++ start -o source.o trit.o tritset.o
+	g++ -o start source.o trit.o tritset.o
 
 source:source.cpp
 	g++ -c source.cpp

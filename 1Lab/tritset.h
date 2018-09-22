@@ -33,6 +33,7 @@ public:
 
 	TritSet(size_t alloc_trits);
 
+	size_t cardinality(Trit value);
 
 	size_t capacity() const;
 

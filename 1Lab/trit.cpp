@@ -1,16 +1,5 @@
 #include "Trit.h"
 
-
-/*size_t& Trit::get_pos() {
-	return right_bit;
-}
-unsigned int*  & Trit::get_data() {
-	return data;
-}
-*/
-
-
-
 Trit::Trit() {
 	data = nullptr;
 	right_bit = 2;
@@ -39,7 +28,6 @@ Trit::Trit(Trit const & obj) {
 		}
 	}
 }
-
 
 
 int Trit::get_data()const {

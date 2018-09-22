@@ -44,9 +44,7 @@ public:
 
 	friend const Trit& operator|(Trit const & self, Trit const & obj);
 
-	//const Trit& operator&(Trit const & obj);
-
-	//const Trit& operator|(Trit const & obj);
+	friend bool operator==(Trit const & self, Trit const & obj);
 
 	Trit const & operator!();
 

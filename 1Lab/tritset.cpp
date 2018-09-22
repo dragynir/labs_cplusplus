@@ -199,7 +199,6 @@ void TritSet::fill_unknown(size_t start , size_t end) {
 	}
 }
 
-
 size_t TritSet::capacity() const{
 	return trits_capacity;
 }

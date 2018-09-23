@@ -27,7 +27,7 @@ namespace InputHandle{
 }
 
 namespace Creator {
-	void fill_file(std::ofstream& output_file, std::map<std::string, int>& words_data);
+	void fill_file(std::ofstream& output_file, std::map<std::string, int>& words_data , int count);
 }
 
 int main(int argc , char** argv){
@@ -49,10 +49,10 @@ int main(int argc , char** argv){
 	
 
 	std::map<std::string , int> words_data;
+	int count = 0;
+	Handler::set_words(input_file , words_data , &count);
 
-	Handler::set_words(input_file , words_data);
-
-	Creator::fill_file(output_file, words_data);
+	Creator::fill_file(output_file, words_data , count);
 
 	return 0;
 }

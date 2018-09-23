@@ -6,6 +6,6 @@
 
 namespace Handler{
 
-	void set_words(std::ifstream& input_file, std::map<std::string, int>& words_data);
+	void set_words(std::ifstream& input_file, std::map<std::string, int>& words_data , int* count);
 
 }

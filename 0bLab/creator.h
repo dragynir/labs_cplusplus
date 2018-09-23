@@ -5,5 +5,5 @@
 
 
 namespace Creator {
-	void fill_file(std::ofstream& output_file, std::map<std::string, int>& words_data);
+	void fill_file(std::ofstream& output_file, std::map<std::string, int>& words_data ,  int count);
 }

@@ -2,10 +2,10 @@
 
 
 namespace Handler{
-	void set_words(std::ifstream& input_file , std::map<std::string , int>& words_data){
+	void set_words(std::ifstream& input_file , std::map<std::string , int>& words_data , int* count){
 		std::string input_str;
 
-		std::regex rgx("[^a-zA-Z0-9]+");
+		std::regex rgx("[^\\w]+");
 
 		while (std::getline(input_file, input_str)) {
 			std::sregex_token_iterator iter(input_str.begin() , input_str.end() , rgx , -1);
@@ -13,9 +13,12 @@ namespace Handler{
 			
 			for (; iter != end; ++iter) {
 				std::string a = *iter;
-				if(a != "")
+				if(a != ""){
 					words_data[a]++;
+					(*count)++;
+				}
 			}
 		}
+
 	}
 }
